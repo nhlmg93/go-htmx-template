@@ -31,12 +31,14 @@ var (
 func main() {
 	handleSigTerms()
 
+	//TODO: move values too env file
 	_, err := sql.Open("sqlite", "file:./build/dev.db")
 	if err != nil {
 		panic(err)
 	}
 
-	// dbmate for migration management.
+	// TODO: dbmate for migration management.
+
 	// Note: make generate -> make migrate
 	//ctx := context.Background()
 	//queries := sqlc.New(db)
