@@ -1,6 +1,8 @@
 package main
 
 import (
+	"context"
+	"database/sql"
 	"embed"
 	"fmt"
 	"log"
@@ -10,9 +12,12 @@ import (
 	"syscall"
 	"time"
 
+	_ "modernc.org/sqlite"
+
 	"github.com/nhlmg93/go-htmx-template/pkg/env"
 	"github.com/nhlmg93/go-htmx-template/pkg/logging"
 	"github.com/nhlmg93/go-htmx-template/pkg/router"
+	_ "github.com/nhlmg93/go-htmx-template/pkg/sqlc"
 )
 
 var (
@@ -25,6 +30,28 @@ var (
 
 func main() {
 	handleSigTerms()
+
+	_, err := sql.Open("sqlite", "file:./build/dev.db")
+	if err != nil {
+		panic(err)
+	}
+
+	// dbmate for migration management.
+	// Note: make generate -> make migrate
+	//ctx := context.Background()
+	//queries := sqlc.New(db)
+	// create an author
+	//	_, err = queries.CreateTodo(ctx, "walk the dog")
+	//	if err != nil {
+	//		panic(err)
+	//	}
+	// list all authors
+	//	authors, err := queries.ListTodos(ctx)
+	//	if err != nil {
+	//		panic(err)
+	//	}
+	//	log.Println(authors)
+
 	router.SetHtmlTemplates(&templateFS)
 
 	// serve tailwind output
