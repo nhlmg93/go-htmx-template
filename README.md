@@ -14,8 +14,6 @@ This project uses `.air` for hot-reloading during development.
 
 ### Development
 
-To run the application with auto-reloading:
-
 ```bash
 make dev
 ```
@@ -32,4 +30,4 @@ make build
 ## Dependencies
 
 - Go
-- Air (for development server)
+- Air
