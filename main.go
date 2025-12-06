@@ -31,8 +31,9 @@ var (
 func main() {
 	handleSigTerms()
 
-	//TODO: move values too env file
-	_, err := sql.Open("sqlite", "file:./build/dev.db")
+	dbUrl := os.Getenv("DB_URL")
+	dbEngine := os.Getenv("DB")
+	_, err := sql.Open(dbEngine, dbUrl)
 	if err != nil {
 		panic(err)
 	}
