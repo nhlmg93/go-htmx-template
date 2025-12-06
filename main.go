@@ -1,8 +1,8 @@
 package main
 
 import (
-	"context"
-	"database/sql"
+	_ "context"
+	_ "database/sql"
 	"embed"
 	"fmt"
 	"log"
@@ -31,29 +31,28 @@ var (
 func main() {
 	handleSigTerms()
 
-	dbUrl := os.Getenv("DB_URL")
-	dbEngine := os.Getenv("DB")
-	_, err := sql.Open(dbEngine, dbUrl)
-	if err != nil {
-		panic(err)
-	}
-
 	// TODO: dbmate for migration management.
 
+	// dbUrl := os.Getenv("DB_URL")
+	// dbEngine := os.Getenv("DB")
+	// _, err := sql.Open(dbEngine, dbUrl)
+	// if err != nil {
+	//	panic(err)
+	// }
 	// Note: make generate -> make migrate
-	//ctx := context.Background()
-	//queries := sqlc.New(db)
+	// ctx := context.Background()
+	// queries := sqlc.New(db)
 	// create an author
-	//	_, err = queries.CreateTodo(ctx, "walk the dog")
-	//	if err != nil {
-	//		panic(err)
-	//	}
+	// _, err = queries.CreateTodo(ctx, "walk the dog")
+	// if err != nil {
+	//	panic(err)
+	// }
 	// list all authors
-	//	authors, err := queries.ListTodos(ctx)
-	//	if err != nil {
-	//		panic(err)
-	//	}
-	//	log.Println(authors)
+	// authors, err := queries.ListTodos(ctx)
+	// if err != nil {
+	//	panic(err)
+	// }
+	// log.Println(authors)
 
 	router.SetHtmlTemplates(&templateFS)
 
